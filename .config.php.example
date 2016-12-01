@@ -1,0 +1,13 @@
+<?php
+/** MySQL settings */
+
+// The name of the database
+define('DB_NAME', 'my_db_name');
+// MySQL database username
+define('DB_USER', 'my_db_username');
+// MySQL database password
+define('DB_PASSWORD', 'my_password');
+// MySQL hostname. Replace with yours
+define('DB_HOST', 'localhost');
+// Timezone. Replace with yours
+define('TIMEZONE', 'Europe/Vilnius');

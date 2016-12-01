@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+
+{% block content %}
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Updated</th>
+        <th>Articles count</th>
+        <th>Recent article</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for feed in feeds %}
+    <tr>
+        <td><a href="{{ feed.url }}">{{ feed.name }}</a></td>
+        <td>{{ feed.last_update }}</td>
+        <td>{{ feed.cc_count }}</td>
+        <td><a href="{{ feed.link }}">{{ feed.title }}</a></td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="4">No feeds have been found for <b>{{ arr }}</b></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
