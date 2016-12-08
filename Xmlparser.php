@@ -12,7 +12,7 @@ class Xmlparser extends DbBase
      * @param Object
      * @return array
      */
-    private function _whitespaces_fairy($xmlObject)
+    private function _whitespacesFairy($xmlObject)
     {
         $itemList = array();
         for ($i = 0; $i < $xmlObject->length; $i++) {
@@ -35,16 +35,16 @@ class Xmlparser extends DbBase
 
         // Get RSS title, url, etc & insert into "feeds" table, return last insert id
         $xmlObject = $xmlDoc->getElementsByTagName('channel');
-        $itemList = $this->_whitespaces_fairy($xmlObject);
-        echo "Inserted feed ID: " . $rss_id = $this->insert_feed([trim($itemList[0]['title']), trim($itemList[0]['link']), $category, date('Y-m-d H:i:s')]);
+        $itemList = $this->_whitespacesFairy($xmlObject);
+        echo "Inserted feed ID: " . $rss_id = $this->insertFeed([trim($itemList[0]['title']), trim($itemList[0]['link']), $category, date('Y-m-d H:i:s')]);
 
         // Get RSS items data and insert into table "items"
         $xmlObject = $xmlDoc->getElementsByTagName('item');
-        $itemList = $this->_whitespaces_fairy($xmlObject);
+        $itemList = $this->_whitespacesFairy($xmlObject);
         foreach ($itemList as $item) {
             $pubDate = date('Y-m-d H:i:s', strtotime($item['pubDate']));
             $arr = [trim($item['title']), $pubDate, trim($item['link']), trim($item['description']), $rss_id];
-            echo "Inserted item id: " . $this->insert_item($arr);
+            echo "Inserted item id: " . $this->insertItem($arr);
         }
     }
 };

@@ -18,7 +18,7 @@ class DbBase
      * @param array
      * @return integer
      */
-    public function insert_feed($arr)
+    public function insertFeed($arr)
     {
         try {
             $this->_dbh->prepare("INSERT INTO feeds (title, url, category, last_update) VALUES (?, ?, ?, ?)")->execute($arr);
@@ -33,7 +33,7 @@ class DbBase
      * @param array
      * @return integer
      */
-    public function insert_item($arr)
+    public function insertItem($arr)
     {
         try {
             $this->_dbh->prepare("INSERT INTO items (title, published, link, description, feed_id) VALUES (?, ?, ?, ?, ?)")->execute($arr);
@@ -70,7 +70,7 @@ class DbBase
      * @param string
      * @return array
      */
-    public function select_feeds($arr = null)
+    public function selectFeeds($arr = null)
     {
         $query = $this->_arr($arr);
         $arr = array($arr);

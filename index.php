@@ -10,7 +10,7 @@ $twig = new Twig_Environment($loader, array(//'cache' => 'compilation_cache',
 
 $feeds = new DbBase();
 $arr = (isset($_GET['category']) && $_GET['category'] !=="") ? $_GET['category'] : null;
-$feeds = $feeds->select_feeds($arr);
+$feeds = $feeds->selectFeeds($arr);
 
 echo $twig->render('content.html', array(
         'page_title' => 'JAAR RSS Reader',
