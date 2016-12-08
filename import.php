@@ -13,7 +13,7 @@ if (filter_var($argv[1], FILTER_VALIDATE_URL) === false)
     exit($err."Not a valid URL given.\n");
 
 $url = $argv[1];
-$category = $argv[2];
+$category = filter_var($argv[2], FILTER_SANITIZE_STRING);
 
 date_default_timezone_set(TIMEZONE);
 

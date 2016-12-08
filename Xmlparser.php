@@ -5,7 +5,7 @@
  */
 require_once("DbBase.php");
 
-class Xmlparser extends DbModel
+class Xmlparser extends DbBase
 {
     /**
      * Iterates XML, deals with unwanted white spaces
@@ -36,14 +36,14 @@ class Xmlparser extends DbModel
         // Get RSS title, url, etc & insert into "feeds" table, return last insert id
         $xmlObject = $xmlDoc->getElementsByTagName('channel');
         $itemList = $this->_whitespaces_fairy($xmlObject);
-        echo "Inserted feed ID: " . $rss_id = $this->insert_feed([$itemList[0]['title'], $itemList[0]['link'], $category, date('Y-m-d H:i:s')]);
+        echo "Inserted feed ID: " . $rss_id = $this->insert_feed([trim($itemList[0]['title']), trim($itemList[0]['link']), $category, date('Y-m-d H:i:s')]);
 
         // Get RSS items data and insert into table "items"
         $xmlObject = $xmlDoc->getElementsByTagName('item');
         $itemList = $this->_whitespaces_fairy($xmlObject);
         foreach ($itemList as $item) {
             $pubDate = date('Y-m-d H:i:s', strtotime($item['pubDate']));
-            $arr = [$item['title'], $pubDate, $item['link'], $item['description'], $rss_id];
+            $arr = [trim($item['title']), $pubDate, trim($item['link']), trim($item['description']), $rss_id];
             echo "Inserted item id: " . $this->insert_item($arr);
         }
     }

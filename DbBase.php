@@ -4,7 +4,7 @@
  */
 require_once("Db.php");
 
-class DbModel
+class DbBase
 {
 
     public function __construct()
